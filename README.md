@@ -1,6 +1,8 @@
 # PanelDataMATLAB
 A Panel Data Toolbox for MATLAB
+
 Version 2.0
+
 Copyright 2013-2015 Inmaculada C. Álvarez, Javier Barbero, and José L. Zofío.
 http://www.paneldatatoolbox.com
 
