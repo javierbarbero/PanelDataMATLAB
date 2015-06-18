@@ -1,0 +1,69 @@
+----------------------------------
+VERSION: 2.0 - June - 2015
+----------------------------------
+
+MAJOR CHANGES:
+
+These major changes break syntax compatibility with version 1.0 but ensure a newer and more robust, intuitive, adaptable user friendly programming environment.
+
+1. Functions:
+
+a) The function 'estprint' has been renamed to 'estdisp' following MATLAB convention of using the word 'disp' to display results in the command window.
+b) All test functions now return a 'testout' structure than can be displayed using the 'testdisp' function.
+c) The function 'hausmanprint' has been removed. Instead, the 'testdisp' function with the structure returned from the 'hausman' test function is used.
+
+2. Estimation:
+
+a) OLS estimation without a constant term may be performed by setting 0 to the 'constant' optional parameter of the estimation function.
+b) Robust standard errors estimation must be performed by setting 'robust' to the 'vartype' optional parameter of the estimating function. This applies to all estimating functions that support robust standard errors. Example: "ols(y,X,'vartype','robust')" instead of "ols(y,X,'robust')"
+c) All instrumental variables estimation functions now require to specify the endogenous  variables as a vector of indices in the ‘endog’ parameter of the function and to include only the new instruments in the instruments parameter, Z.
+
+3. Syntax
+
+a) Syntax for the IV2SLS estimation function is now '[ est ] = iv2sls( y, X, Z, ...)',  and the option ‘endog’ to specify the indices of the endogenous variables is mandatory.
+b) All panel data functions now require an  'id' vector and a 'time' vector as the first two arguments to identify individuals and time periods. 
+c) The parameter of number of time periods, T, disappears. Example: "panel(id,time,Y,X,method)" instead of "panel(y,X,T,method)".
+d) Syntax for panel data estimation function is now '[ est ] = panel( id, time, y, X, method, ...)'.
+e) Syntax for IV panel data estimation function is now '[ est ] = ivpanel( id, time, y, X, Z, method, ...)', ,  and the option ‘endog’ to specify the indices of the endogenous variables is mandatory.
+f) Syntax for Spatial panel estimation function is now '[ est ] = spanel( id, time, y, X, W, method, ...)'.
+
+IMPROVEMENTS:
+- Panel data estimation functions ('panel' and 'ivpanel') are now capable of estimating unbalanced panels.
+- No previous sorting of the variables is requiered for panel data estimations. The function will automatically sort the panel in the requiered way. The vector of indexes is returned in the 'idx' field of the 'estout' structure.
+- Random effects estimations can now include time-invariant explanatory variables and instruments. Those variables will automatically be dropped in the internal “within” and “between” regressions.
+
+NEW FUNCTIONS:
+See the corresponding help for more information about these functions.
+
+Test functions:
+- '[ test ] = blserial( est )': Baltagi and Li's test for serial correlation and random effects.
+- '[ test ] = bphettest( est )': Breusch-Pagan's heteroskedasticity test.
+- '[ test ] = bpretest( est )': Breusch-Pagan's LM test for random effects
+- '[ test ] = bsjksatest( est )': altagi, Song, Jung and Koh's test of spatial autocorrelation, serial correlation and random effects. 
+- '[ test ] = effectsftest ( est)': F test of individual effects
+- '[ test ] = hausmantest ( est)': Hausman test
+- '[ test ] = mundlakvatest ( est)': Mundlak variable addition test
+- '[ test ] = pesarancsdtest ( est)': Pesaran cross-sectional dependence test
+- '[ test ] = pooltest ( est)': Test for poolability of the data
+- '[ test ] = resettest( est, uppowers )': Ramsey's Regression Equation Specification Error Test (RESET).
+- '[ test ] = sarganoitest( est )': Sargan's test of overidentification
+- '[ test ] = waldsigtest( est)': Wald distance significance test for all estimated coefficients.
+- '[ test ] = waldsigtest( est, R, r )': R and r Wald distance joint significance test.
+- '[ test ] = whitehettest( est )': White's heteroskedasticity test.
+- '[ test ] = wuendogtest( est )': Wu's variable addition test of endogeneity.
+- '[ test ] = woolserialtest ( est )': Wooldridge's serial correlation test.
+
+Utility functions:
+- 'estdisp( est )': displays estimation results.
+- 'testdisp( test )': displays test results.
+- '[ lower, upper ] = estci( est, sig )': calculates and returns confidence intervals at the specified significance level.
+- 'estcidisp( est, sig )': calculates adn display confidence intervals at the specified significance level.
+- '[ ieff, se, t, p ] = ieffects( est, options )': calculates and returns individual effects with their standard errors, t statistics and p-value.
+- 'ieffectsdisp( est, options )': calculates and displays individual effects with significance analysis.
+
+----------------------------------
+VERSION: 1.0 – October - 2013
+----------------------------------
+Initial release.
+
+
