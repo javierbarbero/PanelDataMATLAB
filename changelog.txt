@@ -39,19 +39,19 @@ Test functions:
 - '[ test ] = blserial( est )': Baltagi and Li's test for serial correlation and random effects.
 - '[ test ] = bphettest( est )': Breusch-Pagan's heteroskedasticity test.
 - '[ test ] = bpretest( est )': Breusch-Pagan's LM test for random effects
-- '[ test ] = bsjksatest( est )': altagi, Song, Jung and Koh's test of spatial autocorrelation, serial correlation and random effects. 
-- '[ test ] = effectsftest ( est)': F test of individual effects
-- '[ test ] = hausmantest ( est)': Hausman test
-- '[ test ] = mundlakvatest ( est)': Mundlak variable addition test
-- '[ test ] = pesarancsdtest ( est)': Pesaran cross-sectional dependence test
-- '[ test ] = pooltest ( est)': Test for poolability of the data
+- '[ test ] = bsjksatest( est )': Baltagi, Song, Jung and Koh's test of spatial autocorrelation, serial correlation and random effects. 
+- '[ test ] = effectsftest ( est)': F test of individual effects.
+- '[ test ] = hausmantest ( est)': Hausman test.
+- '[ test ] = mundlakvatest ( est)': Mundlak variable addition test.
+- '[ test ] = pesarancsdtest ( est)': Pesaran cross-sectional dependence test.
+- '[ test ] = pooltest ( est)': Test for poolability of the data.
 - '[ test ] = resettest( est, uppowers )': Ramsey's Regression Equation Specification Error Test (RESET).
-- '[ test ] = sarganoitest( est )': Sargan's test of overidentification
+- '[ test ] = sarganoitest( est )': Sargan's test of overidentification.
 - '[ test ] = waldsigtest( est)': Wald distance significance test for all estimated coefficients.
 - '[ test ] = waldsigtest( est, R, r )': R and r Wald distance joint significance test.
 - '[ test ] = whitehettest( est )': White's heteroskedasticity test.
-- '[ test ] = wuendogtest( est )': Wu's variable addition test of endogeneity.
 - '[ test ] = woolserialtest ( est )': Wooldridge's serial correlation test.
+- '[ test ] = wuendogtest( est )': Wu's variable addition test of endogeneity.
 
 Utility functions:
 - 'estdisp( est )': displays estimation results.
@@ -62,7 +62,7 @@ Utility functions:
 - 'ieffectsdisp( est, options )': calculates and displays individual effects with significance analysis.
 
 ----------------------------------
-VERSION: 1.0 – October - 2013
+VERSION: 1.0 - October - 2013
 ----------------------------------
 Initial release.
 
