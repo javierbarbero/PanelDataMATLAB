@@ -115,6 +115,7 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     time = time(idx);
     y = y(idx,:);
     X = X(idx,:);
+    % Instruments are sorted later
     
     % Get endogenous and exogenous ariables 
     endog = unique(options.endog);
@@ -125,6 +126,9 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     % Get and check number of instruments
     lself = size(X(:,exog),2);
     Z = options.inst;
+    if ~isempty(Z)
+        Z = Z(idx,:);   % Sort instruments
+    end
     lnew = size(Z,2);
     l = lself + lnew;
     
