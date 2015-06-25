@@ -16,7 +16,7 @@ X = [log(pcap), log(pc), log(emp), unemp];
 reg = ols(y,X);
 regpo = panel(id,year,y,X,'po');
 assert(all(abs(regpo.coef - reg.coef) <= tolCoef),'Estimated coefficients')
-assert(all(abs(regpo.stderr - reg.stderr) <= tolCoef),'Estimated coefficients')
+assert(all(abs(regpo.stderr - reg.stderr) <= tolCoef),'Standard errors')
 assert(abs(regpo.r2 - reg.r2) <= tolCoef,'R2')
 assert(abs(regpo.adjr2 - reg.adjr2) <= tolCoef,'Adj R2')
 assert(abs(regpo.RSS -  reg.RSS) <= tolCoef,'RSS')
@@ -136,16 +136,6 @@ assert(abs(pecsdre.value -   29.07877056772282) <= tolTest,'PESARANCSD value')
 % -----------------
 % ROBUST
 % -----------------
-
-% Pool
-regr = ols(y,X);
-regpor = panel(id,year,y,X,'po');
-assert(all(abs(regpor.coef - regr.coef) <= tolCoef),'Estimated coefficients')
-assert(all(abs(regpor.stderr - regr.stderr) <= tolCoef),'Estimated coefficients')
-assert(abs(regpor.r2 - regr.r2) <= tolCoef,'R2')
-assert(abs(regpor.adjr2 - regr.adjr2) <= tolCoef,'Adj R2')
-assert(abs(regpor.RSS -  regr.RSS) <= tolCoef,'RSS')
-assert(abs(regpor.resdf - regr.resdf) <= tolCoef,'res DF')
 
 % FE Robust
 regfer = panel(id,year,y,X,'fe','vartype','robust');
