@@ -90,7 +90,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
     [Z, znames] = extracttable(Z);
     
     % Check method
-    if ~ismember(method,{'fe','be','re','ec'})
+    if ~ismember(method,{'po','fe','be','re','ec'})
         error('Incorrect method')
     end
     

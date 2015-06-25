@@ -16,6 +16,16 @@ endog = 1;
 Z = [log(ndi_1), log(pimin_1)];
 id = state;
 
+% Pool
+iv = iv2sls(y,X,Z,'endog',endog);
+regpo = ivpanel(id,year,y,X,Z,'po','endog',endog);
+
+assert(all(abs(regpo.coef - iv.coef) <= tolCoef),'Estimated coefficients')
+assert(all(abs(regpo.stderr - iv.stderr) <= tolCoef),'Standard errors')
+assert(abs(regpo.r2 - iv.r2) <= tolCoef,'R2')
+assert(abs(regpo.RSS -  iv.RSS) <= tolCoef,'RSS')
+assert(abs(regpo.resdf - iv.resdf) <= tolCoef,'res DF')
+
 % FE
 regivfe = ivpanel(id,year,y,X,Z,'fe','endog',endog);
 
