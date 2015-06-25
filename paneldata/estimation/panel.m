@@ -85,7 +85,7 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     [X, xnames] = extracttable(X);  
     
     % Check method
-    if ~ismember(method,{'fe','be','re'})
+    if ~ismember(method,{'po','fe','be','re'})
         error('Incorrect method')
     end
              
