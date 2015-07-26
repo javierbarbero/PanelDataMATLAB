@@ -51,8 +51,8 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     if size(y,1) ~= size(Z,1)
         error('Number of rows in Y must be equal to number of rows in Y and X');
     end
-    %}
-    
+    %}    
+        
     % Parse Additional options
     p = inputParser;
     if verLessThan('matlab', '8.2')
@@ -68,6 +68,11 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     addPar(p,'useinstruments',[],@(x) isnumeric(x));
     p.parse(varargin{:})
     options = p.Results;
+    
+    % Error if NaN's in input data
+    if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
+        error('NaN values not allowed in input data');
+    end
     
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);

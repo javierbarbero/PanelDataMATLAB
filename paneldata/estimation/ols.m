@@ -45,8 +45,8 @@ function [ est ] = ols( y, X, varargin )
     end
     if size(y,1) ~= size(X,1)
         error('Number of rows in Y must be equal to number of rows in X');
-    end
-    
+    end    
+        
     % Parse Additional options
     p = inputParser;
     if verLessThan('matlab', '8.2')
@@ -62,6 +62,11 @@ function [ est ] = ols( y, X, varargin )
     addPar(p,'clusterid',[],@(x) length(x) == length(y))
     p.parse(varargin{:})
     options = p.Results;
+    
+    % Error if NaN's in input data
+    if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(options.clusterid)))
+        error('NaN values not allowed in input data');
+    end
     
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);

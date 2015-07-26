@@ -63,9 +63,8 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     end
     if nargin < 6
         error('Panel method not specified')
-    end
-    
-    
+    end   
+        
     % Parse Additional options
     p = inputParser;
     if verLessThan('matlab', '8.2')
@@ -82,6 +81,11 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     addPar(p,'inst',[],@(x) isnumeric(x));
     p.parse(varargin{:})
     options = p.Results;
+    
+    % Error if NaN's in input data
+    if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(W))) || any(any(isnan(options.inst)))
+        error('NaN values not allowed in input data');
+    end    
     
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);

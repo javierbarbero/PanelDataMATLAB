@@ -47,7 +47,7 @@ function [ est ] = s2sls( y, X, W, varargin )
     end
     if size(y,1) ~= size(X,1)
         error('Number of rows in Y must be equal to number of rows in X');
-    end
+    end       
     
     % Parse Additional options
     p = inputParser;
@@ -65,6 +65,11 @@ function [ est ] = s2sls( y, X, W, varargin )
     addPar(p,'inst',[],@(x) isnumeric(x));
     p.parse(varargin{:})
     options = p.Results;
+    
+    % Error if NaN's in input data
+    if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(W))) || any(any(isnan(options.inst)))
+        error('NaN values not allowed in input data');
+    end
     
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);
