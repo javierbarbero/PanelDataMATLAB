@@ -134,7 +134,7 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     nexog = size(X(:,exog),2);
     
     % Replace instruments if specified in the useinstruments option
-    if options.useinstruments
+    if ~isempty(options.useinstruments)
         Z = options.useinstruments;
         lsef = NaN;
         lnew = size(Z,2);

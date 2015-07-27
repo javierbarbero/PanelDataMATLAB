@@ -165,7 +165,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
             Z = [X(:,exog) Z ones(N,1)];
                         
             % Replace instruments if specified in the useinstruments option
-            if options.useinstruments
+            if ~isempty(options.useinstruments)
                 Z = options.useinstruments;
                 lself = NaN;
                 lnew = size(Z,2);
@@ -181,9 +181,9 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
         case 'fe'      
             % Build matix of instruments
             Z = [X(:,exog) Z];
-            
+
             % Replace instruments if specified in the useinstruments option
-            if options.useinstruments
+            if ~isempty(options.useinstruments)
                 Z = options.useinstruments;
                 lself = NaN;
                 lnew = size(Z,2);
@@ -205,7 +205,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
             Z = [X(:,exog) Z ones(N,1)];
                        
             % Replace instruments if specified in the useinstruments option
-            if options.useinstruments
+            if ~isempty(options.useinstruments)
                 Z = options.useinstruments;
                 lself = NaN;
                 lnew = size(Z,2);
@@ -220,7 +220,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
             resdf = n-k;
         case {'re','ec'}
             % Replace instruments if specified in the useinstruments option
-            if options.useinstruments
+            if ~isempty(options.useinstruments)
                 Z = options.useinstruments;
                 lself = NaN;
                 lnew = size(Z,2);
@@ -277,7 +277,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
             Z = [X(:,exog) Z];
             
             % Replace instruments if specified in the useinstruments option
-            if options.useinstruments
+            if ~isempty(options.useinstruments)
                 Z = options.useinstruments;
                 lself = NaN;
                 lnew = size(Z,2);
