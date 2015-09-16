@@ -29,7 +29,7 @@ function [ est ] = s2sls( y, X, W, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 16, September, 2015
 %
 
     % Create output structure
@@ -79,7 +79,6 @@ function [ est ] = s2sls( y, X, W, varargin )
     endog = unique(options.endog);
     exog = 1:size(X,2);
     exog(ismember(exog,endog)) = [];   
-    Xexog = X(:,exog);
     
     % Get and check number of instruments
     lself = size(X(:,exog),2);
@@ -204,7 +203,7 @@ function [ est ] = s2sls( y, X, W, varargin )
         Z = Xspatr;        
         Psi = computePsi(rho, u, H, Z, W);
         
-        perrfnc = @(x) (Gamma*[x; x^2]-gamma)' * inv(Psi) * (Gamma*[x; x^2]-gamma);
+        perrfnc = @(x) (Gamma*[x; x^2]-gamma)' * ((Psi)\eye(size(Psi))) * (Gamma*[x; x^2]-gamma);
         
         rho = fminsearch(perrfnc,0.2,options);  
         
@@ -227,9 +226,11 @@ function [ est ] = s2sls( y, X, W, varargin )
         J = Gamma * [1; 2*rho];
         
         % Omega elements
+        invPsi = Psi \ eye(size(Psi));
         Omega_dd = P' * Psi_dd * P;
-        Omega_rr = inv(J' * inv(Psi) * J);
-        Omega_dr = P' * Psi_dr * inv(Psi) * J * Omega_rr;
+        Omega_rr = inv(J' * invPsi * J);
+        Omega_rr = (Omega_rr\eye(size(Omega_rr))); % Invert it
+        Omega_dr = P' * Psi_dr * invPsi * J * Omega_rr;
           
         % Omega matrix
         Omega = N^-1 * [Omega_dd, Omega_dr; Omega_dr', Omega_rr];
@@ -379,22 +380,22 @@ function [Psi, sigma2, P, QHH, a1, a2, mu3] = computePsi(rho, u, H, Z, M)
         
         % Psi
         Psi12 = sigma2^2 * (2*N)^-1 * trace( (A1 + A1')*(A2+A2') ) + ...
-            sigma2 * N^-1 * a1'*a2 + ...
+            sigma2 * N^-1 * (a1'*a2) + ...
             N^-1 * (mu4 - 3*sigma2^2) * diag(A1)' * diag(A2) + ...
             N^-1 * mu3 * (a1' * diag(A2) + a2' * diag(A1));
         
         Psi21 = sigma2^2 * (2*N)^-1 * trace( (A2 + A2')*(A1+A1') ) + ...
-            sigma2 * N^-1 * a2'*a1 + ...
+            sigma2 * N^-1 * (a2'*a1) + ...
             N^-1 * (mu4 - 3*sigma2^2) * diag(A2)' * diag(A1) + ...
             N^-1 * mu3 * (a2' * diag(A1) + a1' * diag(A2));
         
         Psi11 = sigma2^2 * (2*N)^-1 * trace( (A1 + A1')*(A1+A1') ) + ...
-            sigma2 * N^-1 * a1'*a1 + ...
+            sigma2 * N^-1 * (a1'*a1) + ...
             N^-1 * (mu4 - 3*sigma2^2) * diag(A1)' * diag(A1) + ...
             N^-1 * mu3 * (a1' * diag(A1) + a1' * diag(A1));
         
         Psi22 = sigma2^2 * (2*N)^-1 * trace( (A2 + A2')*(A2+A2') ) + ...
-            sigma2 * N^-1 * a2'*a2 + ...
+            sigma2 * N^-1 * (a2'*a2) + ...
             N^-1 * (mu4 - 3*sigma2^2) * diag(A2)' * diag(A2) + ...
             N^-1 * mu3 * (a2' * diag(A2) + a2' * diag(A2));
         

@@ -36,7 +36,7 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 16, September, 2015
 %
 
     % Create output structure
@@ -125,7 +125,6 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     endog = unique(options.endog);
     exog = 1:size(X,2);
     exog(ismember(exog,endog)) = [];   
-    Xexog = X(:,exog);
     
     % Get and check number of instruments
     lself = size(X(:,exog),2);
