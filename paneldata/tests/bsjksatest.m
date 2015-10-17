@@ -16,27 +16,20 @@ function [ test ] = bsjksatest( est )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 17, October, 2015
 %
 
     if est.isMultiEq
         error('Baltagi, Song, Jung amd Koh''s test not available for multi-equation models')
     end
+    
+    if ~est.isPanel
+        error('Baltagi, Song, Jung amd Koh''s test requieres a panel data estimation')
+    end
 
     if est.isRobust
         error('Baltagi, Song, Jung amd Koh''s test not valid for robust estimations');
-    end
-    %{
-    if ~strcmpi(est.options.method,'re')
-        error('Baltagi, Song, Jung amd Koh''s test must be performed after a random effects estimation');
-    end
-    %}
-    %{
-    if est.isInstrumental
-        error('Baltagi, Song, Jung amd Koh''s test not valid for instrumetnal estimation')
-    end
-    %}
-    
+    end   
     
     % Create otuput structure
     test = testout();

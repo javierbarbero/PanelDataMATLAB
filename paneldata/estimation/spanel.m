@@ -36,7 +36,7 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 16, September, 2015
+%   LAST UPDATE: 17, October, 2015
 %
 
     % Create output structure
