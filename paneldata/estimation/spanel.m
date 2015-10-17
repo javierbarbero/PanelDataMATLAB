@@ -109,7 +109,7 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     
     % Check W matrix
     if size(W,1) == n
-        % Builg B W matrix
+        % Builg Big W matrix
         W = sparse(W);
         W = kron(W, eye(T));
     end
@@ -181,6 +181,11 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     % If spatial lag in the error term
     slagerror = options.slagerror;
     if slagerror
+        
+        % Check if the W matrix has size n (and not n*T)
+        if size(Worig,1) ~= n
+            error('The W matrix must have size n if the model has a spatial lag error');
+        end
 
         % Get spatial matrix for the errors
         M = W;
