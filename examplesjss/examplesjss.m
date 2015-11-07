@@ -12,7 +12,7 @@ y = log(gsp);
 X = [log(pcap), log(pc), log(emp), unemp];
 
 ynames = {'lgsp'};
-xnames = {'lpcap','lpc','lemp','unemp'};
+xnames = {'lpcap', 'lpc', 'lemp', 'unemp'};
 
 % Fixed effects
 fe = panel(id, year, y, X, 'fe');
@@ -61,8 +61,8 @@ X = [log(price), log(ndi), log(pimin)];
 Z = [log(ndi_1), log(pimin_1)];
 
 ynames = {'lc'};
-xnames = {'lprice','lndi','lpimin'};
-znames = {'lndi_1','lpimin_1'};
+xnames = {'lprice', 'lndi', 'lpimin'};
+znames = {'lndi_1', 'lpimin_1'};
 
 % IV Fixed effects
 ivfe = ivpanel(state, year, y, X, Z, 'fe', 'endog', 1);
@@ -90,7 +90,7 @@ y = log(gsp);
 X = [log(pcap), log(pc), log(emp), unemp];
 
 ynames = {'lgsp'};
-xnames = {'lpcap','lpc','lemp','unemp'};
+xnames = {'lpcap', 'lpc', 'lemp', 'unemp'};
 
 % SARAR
 sarar = spanel(id, year, y, X, W, 're', 'slagy', 1, 'slagerror', 1);
@@ -116,7 +116,7 @@ estdisp(sarfe);
 R = [1 0 0 0 0; 0 1 0 0 0];
 r = [0; 0];
 
-wald = waldsigtest(re,R,r);
+wald = waldsigtest(re, R, r);
 testdisp(wald);
 
 % Testing Poolability
@@ -134,7 +134,7 @@ testdisp(bpre);
 
 % Texting fixed vs. random effects
 % - Hausman test
-hausman = hausmantest(fe,re);
+hausman = hausmantest(fe, re);
 testdisp(hausman);
 
 % - Mundlak
