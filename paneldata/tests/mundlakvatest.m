@@ -19,11 +19,15 @@ function [ test ] = mundlakvatest( est )
 %
 
     if est.isMultiEq
-        error('Mundlak''s variable additiin test not available for multi-equation models')
+        error('Mundlak''s variable addition test not available for multi-equation models')
     end
     
     if ~est.isPanel
         error('Mundlak''s variable addition test requieres a panel data estimation')
+    end
+    
+    if est.isSpatial
+        error('Mundlak''s variable addition test not implemented for spatial panels')
     end
     
     % This is to ensure that only time-invariant variables are included
