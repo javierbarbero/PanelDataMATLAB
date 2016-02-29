@@ -1,18 +1,19 @@
 function [  ] = estdisp( est )
 %ESTDISP Display estiamtion results
-%   ESTDISP( test ) Display restiamtion results
+%   ESTDISP( est ) Display estiamtion results stored in an 'estout'
+%   structure.
 %
 %   Example
 %     
-%      estdisp(test);
+%      estdisp(est);
 %
-%   See also ESTOUT
+%   See also ESTOUT, TESTDISP
 %
 %   Copyright 2013-2015 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 29, February, 2016
 %
 
     % Fill missing variables names. In case the user has change some names

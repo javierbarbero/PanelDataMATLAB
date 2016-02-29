@@ -1,19 +1,18 @@
 function [  ] = testdisp( test )
-%TESTDISP Display results of the test
-%   TESTDISP( test ) Display results of the test stored in the testout
-%   structure test.
+%TESTDISP Display test results
+%   TESTDISP( test ) Display test results stored in a 'testout' structure
 %
 %   Example
 %     
 %      testdisp(test);
 %
-%   See also TESTOUT
+%   See also TESTOUT, ESTDISP
 %
 %   Copyright 2013-2015 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 29, February, 2016
 %
 
     switch(test.test)
