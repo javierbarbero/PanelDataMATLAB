@@ -121,6 +121,7 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     time = time(idx);
     y = y(idx,:);
     X = X(idx,:);
+    options.clusterid = options.clusterid(idx); % Sort clusterid
     
     % Store original data (sorted)
     est.id = id;
@@ -253,7 +254,7 @@ function [ est ] = panel( id, time, y, X, method, varargin )
             total_sum = 0;
             for i=1:1:n_clus;
                 total_sum = total_sum + Xtr(id_clus==uid_clus(i),:)'*res(id_clus==uid_clus(i))*res(id_clus==uid_clus(i))'*Xtr(id_clus==uid_clus(i),:);
-            end            
+            end
             varcoef = invXtrXtr * total_sum * invXtrXtr; 
               
             % Degrees of freedom correction
