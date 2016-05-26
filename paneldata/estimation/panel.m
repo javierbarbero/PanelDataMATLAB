@@ -37,7 +37,7 @@ function [ est ] = panel( id, time, y, X, method, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 26, May, 2016
 %
 
     % Create output structure

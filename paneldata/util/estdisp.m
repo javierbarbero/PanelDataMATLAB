@@ -13,7 +13,7 @@ function [  ] = estdisp( est )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 29, February, 2016
+%   LAST UPDATE: 26, May, 2016
 %
 
     % Fill missing variables names. In case the user has change some names
@@ -31,6 +31,8 @@ function [  ] = estdisp( est )
         case 'IV2SLS'
             fprintf('Two Stage Least Squares (IV2SLS)');
         % Panel
+        case 'PO'
+            fprintf('Panel: Pooling estimation (PO)')
         case 'FE'
             fprintf('Panel: Fixed effects (within) (FE)');
         case 'BE'
@@ -38,6 +40,8 @@ function [  ] = estdisp( est )
         case 'RE'
             fprintf('Panel: Random effects (RE)');
         % IV Panel
+        case 'PO2SLS'
+            fprintf('IV Panel: Pooling estimation (PO2SLS)');
         case 'FE2SLS'
             fprintf('IV Panel: Fixed effects two stage least squares (FE2SLS)')
         case 'BE2SLS'
