@@ -27,7 +27,7 @@ function [ est ] = ols( y, X, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 16, June, 2016
 %
 
     % Create output structure
@@ -62,16 +62,16 @@ function [ est ] = ols( y, X, varargin )
     addPar(p,'clusterid',[],@(x) length(x) == length(y))
     p.parse(varargin{:})
     options = p.Results;
-    
+
+    % Extract table names and convert data to array
+    [y, ynames] = extracttable(y);
+    [X, xnames] = extracttable(X);  
+            
     % Error if NaN's in input data
     if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(options.clusterid)))
         error('NaN values not allowed in input data');
     end
-    
-    % Extract table names and convert data to array
-    [y, ynames] = extracttable(y);
-    [X, xnames] = extracttable(X);  
-    
+        
     % Check if constant
     hasConstant = options.constant;
     

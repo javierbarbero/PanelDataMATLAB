@@ -39,7 +39,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 16, June, 2016
 %
 
     % Create output structure
@@ -83,17 +83,17 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
     addPar(p,'useinstruments',[],@(x) isnumeric(x));
     p.parse(varargin{:})
     options = p.Results;
-    
-    % Error if NaN's in input data
-    if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
-        error('NaN values not allowed in input data');
-    end
-    
+
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);
     [X, xnames] = extracttable(X);  
     [Z, znames] = extracttable(Z);
-    
+            
+    % Error if NaN's in input data
+    if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
+        error('NaN values not allowed in input data');
+    end
+        
     % Check method
     if ~ismember(method,{'po','fe','be','re','ec'})
         error('Incorrect method')

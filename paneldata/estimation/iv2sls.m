@@ -28,7 +28,7 @@ function [ est ] = iv2sls( y, X, Z, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 16, June, 2016
 %
 
     % Create output structure
@@ -69,15 +69,15 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     p.parse(varargin{:})
     options = p.Results;
     
-    % Error if NaN's in input data
-    if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
-        error('NaN values not allowed in input data');
-    end
-    
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);
     [X, xnames] = extracttable(X);  
     [Z, znames] = extracttable(Z);
+    
+    % Error if NaN's in input data
+    if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
+        error('NaN values not allowed in input data');
+    end
     
     % Check if constant
     hasConstant = options.constant;

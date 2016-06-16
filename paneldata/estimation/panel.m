@@ -37,7 +37,7 @@ function [ est ] = panel( id, time, y, X, method, varargin )
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 26, May, 2016
+%   LAST UPDATE: 16, June, 2016
 %
 
     % Create output structure
@@ -80,14 +80,14 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     p.parse(varargin{:})
     options = p.Results;
     
+    % Extract table names and convert data to array
+    [y, ynames] = extracttable(y);
+    [X, xnames] = extracttable(X);  
+    
     % Error if NaN's in input data
     if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(options.clusterid)))
         error('NaN values not allowed in input data');
     end
-    
-    % Extract table names and convert data to array
-    [y, ynames] = extracttable(y);
-    [X, xnames] = extracttable(X);  
     
     % Check method
     if ~ismember(method,{'po','fe','be','re'})
