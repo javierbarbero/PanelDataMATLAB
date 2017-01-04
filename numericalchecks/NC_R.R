@@ -59,8 +59,20 @@ fm <- log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp
 sararfe <- spgm(fm, data=dataMunnell, listw=lw, lag=TRUE, spatial.error=TRUE, model="within", method="w2sls")
 summary(sararfe)
 
+# spatial coefficient (rho) and t statistic
+rhofe <- sararfe$rho[1]
+rhofe_t <- sararfe$rho[1] / sqrt(sararfe$rho[2]) 
+print(rhofe)
+print(rhofe_t)
+
 # SARAR RE
 sararre <- spgm(fm, data=dataMunnell, listw=lw, lag=TRUE, spatial.error=TRUE, model="random", method="g2sls")
 summary(sararre)
+
+# spatial coefficient (rho) and t statistic
+rhore <- sararre$rho[1]
+rhore_t <- sararre$rho[1] / sqrt(sararre$rho[2]) 
+print(rhore)
+print(rhore_t)
 
 
