@@ -17,7 +17,7 @@ function [ est ] = iv2sls( y, X, Z, varargin )
 %   option is mandatory.
 %   - 'useinstruments': use the specified instruments instead of the ones
 %   specified in Z plus the exogenous X.
-%
+%  i just try git
 %   Example
 %     
 %      est = iv2sls(y, X, Z);
