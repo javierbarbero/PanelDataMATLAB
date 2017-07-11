@@ -1,35 +1,4 @@
-﻿#Panel Data Toolbox for MATLAB
+应朋友的要求，添加了CCEMG的部分，其他内容请参考原软件包的介绍。
+地址https://github.com/javierbarbero/PanelDataMATLAB
 
-Version 2.0
-
-http://www.paneldatatoolbox.com
-
-##Authors:
-
-Inmaculada C. Álvarez
-
-Javier Barbero
-
-José L. Zofío.
-
-##Usage:
-
-To use the Toolbox add the folder called "paneldata" (with Subfolders) to the MATLAB path.
-
-The toolbox contains the following folders:
-- data: some datasets used in the examples.
-- examples: examples of all the functions included in the toolbox.
-- examplesjss: examples of the Working Paper.
-- numericalchecks: numericals checks against Stata and R (see details in the Working Paper).
-- paneldata: all the functions of the toolbox all here. This is the folder you must add to the MATLAB path.
-- unittests: unitests of the functions of the toolbox.
-
-##How to cite:
-See instructions at:
-
-http://www.paneldatatoolbox.com/how-to-cite/
-
-##License
-Code is distributed under the GNU-GPL3
-
-http://www.gnu.org/licenses/gpl-3.0.html
+CCEMG部分主要是根据论文“Common corrected effects estimation of heterogeneous dynamic panel data models with weakly exogenous regressors”进行了扩展。
