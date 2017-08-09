@@ -2,11 +2,11 @@ function [ isBalanced, idx, n, T, Tid, Tmean, Thmean] = isbalancedpanel( id, tim
 %ISBALANCEDPANEL Internal Function
 %   Internal Function
 %
-%   Copyright 2013-2015 Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright 2013-2017 Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 9, August, 2017
 %
     % Get uniques
     id_uniq = unique(id);
@@ -44,6 +44,9 @@ function [ isBalanced, idx, n, T, Tid, Tmean, Thmean] = isbalancedpanel( id, tim
         end
         %}
         Tid = accumarray(id,id,[],@(j) size(j,1),NaN) ;
+        
+        % Remove NaN's generated if there are gaps in time periods
+        Tid(isnan(Tid)) = [];
         
         % Compute mean and harmonic mean
         Tmean = mean(Tid);
