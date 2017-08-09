@@ -33,11 +33,11 @@ function [ est ] = panel( id, time, y, X, method, varargin )
 %
 %   See also ESTOUT, OLS, IVPANEL, SPANEL
 %
-%   Copyright 2013-2015 Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright 2013-2017 Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 16, June, 2016
+%   LAST UPDATE: 9, August, 2017
 %
 
     % Create output structure
@@ -215,8 +215,8 @@ function [ est ] = panel( id, time, y, X, method, varargin )
                 ytr = y - theta * groupmeans(id,y,'replicate',1);            
                 Xtr = X - theta * groupmeans(id,X,'replicate',1);
             else
-                ytr = y - repmat(theta,1,N) * groupmeans(id,y,'replicate',1);            
-                Xtr = X - repmat(theta,1,N) * groupmeans(id,X,'replicate',1);
+                ytr = y - theta .* groupmeans(id,y,'replicate',1);            
+                Xtr = X - repmat(theta,1,k) .* groupmeans(id,X,'replicate',1);
             end
             
             resdf = N-k;

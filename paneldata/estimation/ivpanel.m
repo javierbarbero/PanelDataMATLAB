@@ -35,11 +35,11 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
 %
 %   See also ESTOUT, IV2SLS, PANEL, SPANEL
 %
-%   Copyright 2013-2015 Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright 2013-2017 Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 16, June, 2016
+%   LAST UPDATE: 9, August, 2017
 %
 
     % Create output structure
@@ -302,9 +302,9 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
                 Xtr = X - theta * groupmeans(id,X,'replicate',1);
                 Ztr = Z - theta * groupmeans(id,Z,'replicate',1);
             else
-                ytr = y - repmat(theta,1,N) * groupmeans(id,y,'replicate',1);            
-                Xtr = X - repmat(theta,1,N) * groupmeans(id,X,'replicate',1);
-                Ztr = Z - repmat(theta,1,N) * groupmeans(id,Z,'replicate',1);
+                ytr = y - theta .* groupmeans(id,y,'replicate',1);            
+                Xtr = X - repmat(theta,1,k) .* groupmeans(id,X,'replicate',1);
+                Ztr = Z - repmat(theta,1,k) .* groupmeans(id,Z,'replicate',1);
             end
             
             resdf = N-k;
