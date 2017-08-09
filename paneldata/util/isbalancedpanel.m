@@ -45,7 +45,7 @@ function [ isBalanced, idx, n, T, Tid, Tmean, Thmean] = isbalancedpanel( id, tim
         %}
         Tid = accumarray(id,id,[],@(j) size(j,1),NaN) ;
         
-        % Remove NaN's generated if there are gaps in time periods
+        % Remove NaN's generated if there are gaps in ID's
         Tid(isnan(Tid)) = [];
         
         % Compute mean and harmonic mean
