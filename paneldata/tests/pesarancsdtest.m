@@ -12,11 +12,11 @@ function [ test ] = pesarancsdtest( est )
 %
 %   See also TESTOUT
 %
-%   Copyright Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 11, August, 2017
 %
 
     if est.isMultiEq
@@ -60,11 +60,19 @@ function [ test ] = pesarancsdtest( est )
             for j=i+1:1:n
                 % Get common values
                 Tij = intersect(time(id == uid(i)), time(id == uid(j)) );
+                
+                % Display error message if less than 2 common time periods
+                if length(Tij) < 2
+                    error('Somo units have 1 or less common time periods. Test cannot be performed.')
+                end
+                
                 % Get common time residuals for both groups
                 resi = res(id == uid(i) & ismember(time, Tij));
                 resj = res(id == uid(j) & ismember(time, Tij));
+                
                 % Compute correlation coefficient
                 temp = corrcoef(resi, resj);
+                
                 % Add to the total sum corrected by the number of common
                 % observations
                 total_sum = total_sum + sqrt(length(Tij)) * temp(1,2);
