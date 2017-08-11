@@ -18,11 +18,11 @@ function [ test ] = woolserialtest( est, varargin )
 %
 %   See also TESTOUT
 %
-%   Copyright 2013-2015 Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright 2013-2017 Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 17, June, 2015
+%   LAST UPDATE: 11, August, 2017
 %
 
     if est.isMultiEq
@@ -57,20 +57,23 @@ function [ test ] = woolserialtest( est, varargin )
     id = est.id;
     time = est.time;
     
+    % Get unique id's
+    uid =unique(id);
+    
     % Get fe residuals
     res = est.res;
     resLag = res;
     resLag2 = res;
     idLag = id;
-    for i=n:-1:1
-        tmin = min(time(id == i));
-        pos = find(id == i & time == tmin);
+    for i=length(uid):-1:1
+        tmin = min(time(id == uid(i)));
+        pos = find(id == uid(i) & time == tmin);
         resLag(pos) = [];
         idLag(pos) = [];
         
         
-        tmax = max(time(id == i));
-        pos = find(id == i & time == tmax);
+        tmax = max(time(id == uid(i)));
+        pos = find(id == uid(i) & time == tmax);
         resLag2(pos) = [];
         
     end
