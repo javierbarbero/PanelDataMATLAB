@@ -12,7 +12,7 @@ function [ test ] = blserialtest( est )
 %
 %   See also TESTOUT
 %
-%   Copyright 2013-2015 Inmaculada C. ¡lvarez, Javier Barbero, JosÈ L. ZofÌo
+%   Copyright 2013-2015 Inmaculada C. √Ålvarez, Javier Barbero, Jos√© L. Zof√≠o
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
@@ -32,7 +32,7 @@ function [ test ] = blserialtest( est )
     end
     
     if est.isInstrumental
-        error('Baltagi and Li''s test not valid for instrumetnal estimation')
+        error('Baltagi and Li''s test not valid for instrumental estimation')
     end
     
     
