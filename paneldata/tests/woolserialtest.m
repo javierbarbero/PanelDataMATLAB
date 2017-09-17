@@ -34,7 +34,7 @@ function [ test ] = woolserialtest( est, varargin )
     end
     
     if est.isInstrumental
-        error('PWooldridge''s serial correlation test not valid for instrumetnal estimation')
+        error('Wooldridge''s serial correlation test not valid for instrumental estimation')
     end
     
     % Parse Additional options
