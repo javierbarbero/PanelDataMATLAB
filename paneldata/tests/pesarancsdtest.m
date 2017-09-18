@@ -63,7 +63,7 @@ function [ test ] = pesarancsdtest( est )
                 
                 % Display error message if less than 2 common time periods
                 if length(Tij) < 2
-                    error('Somo units have 1 or less common time periods. Test cannot be performed.')
+                    error('Some units have 1 or less common time periods. Test cannot be performed.')
                 end
                 
                 % Get common time residuals for both groups
