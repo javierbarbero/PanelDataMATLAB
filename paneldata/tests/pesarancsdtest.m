@@ -28,7 +28,7 @@ function [ test ] = pesarancsdtest( est )
     end
     
     if est.isInstrumental
-        error('Pesaran''s CSD test not valid for instrumetnal estimation')
+        error('Pesaran''s CSD test not valid for instrumental estimation')
     end
     
     % Create otuput structure
