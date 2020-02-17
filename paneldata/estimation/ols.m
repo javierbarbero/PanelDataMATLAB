@@ -153,11 +153,12 @@ function [ est ] = ols( y, X, varargin )
        
     
     % Goodness of fit
-    M0 = eye(N) - 1/N * ones(N);
+    % M0 = eye(N) - 1/N * ones(N);
     RSS = res' * res;
     TSS = y' * y;
     ESS = TSS - RSS;
-    r2 = 1 - (res' * M0 * res) ./ (y' * M0 * y);
+    % r2 = 1 - (res' * M0 * res) ./ (y' * M0 * y);
+    r2 = 1 - RSS ./ sum((y - mean(y)).^2);
     adjr2 = 1 - (N - 1) ./ (N - k) .* (1 - r2);
     
     % Save estimation

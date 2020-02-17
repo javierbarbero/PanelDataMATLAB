@@ -278,10 +278,10 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     
     % Goodness of fit
     if strcmp(method,'be')
-        M0 = eye(n) - 1/n * ones(n);
+    %    M0 = eye(n) - 1/n * ones(n);
         adjr2_correction = (n - 1) ./ (resdf);
     else
-        M0 = eye(N) - 1/N * ones(N);
+    %    M0 = eye(N) - 1/N * ones(N);
         if strcmp(method,'fe') && robust
             adjr2_correction = (N - 1) ./ ((N-n)-k); 
         else
@@ -291,7 +291,8 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     RSS = res' * res;
     TSS = y' * y;
     ESS = TSS - RSS;
-    r2 = 1 - (res' * M0 * res) ./ (ytr' * M0 * ytr);
+    %r2 = 1 - (res' * M0 * res) ./ (ytr' * M0 * ytr);
+    r2 = 1 - RSS ./ sum((ytr - mean(ytr)).^2);
     adjr2 = 1 - adjr2_correction .* (1 - r2);
 
     % Compute correc r2 for 're'
