@@ -76,7 +76,7 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     
     % Error if NaN's in input data
     if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(Z))) || any(any(isnan(options.useinstruments)))
-        error('NaN values not allowed in input data');
+        error('NaN values not allowed in input data. Remove all rows with NaN''s before using this function.');
     end
     
     % Check if constant

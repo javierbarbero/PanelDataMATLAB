@@ -81,12 +81,15 @@ function [ est ] = panel( id, time, y, X, method, varargin )
     options = p.Results;
     
     % Extract table names and convert data to array
+    id = extracttable(id);
+    time = extracttable(time);
     [y, ynames] = extracttable(y);
     [X, xnames] = extracttable(X);  
-    
+    options.clusterid = extracttable(options.clusterid);
+
     % Error if NaN's in input data
     if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(options.clusterid)))
-        error('NaN values not allowed in input data');
+        error('NaN values not allowed in input data. Remove all rows with NaN''s before using this function.');
     end
     
     % Check method

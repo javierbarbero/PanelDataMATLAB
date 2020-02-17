@@ -83,12 +83,15 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     options = p.Results;
 
     % Extract table names and convert data to array
+    id = extracttable(id);
+    time = extracttable(time);
     [y, ynames] = extracttable(y);
     [X, xnames] = extracttable(X);  
+    options.inst = extracttable(options.inst);
             
     % Error if NaN's in input data
     if any(isnan(id)) ||any(isnan(time)) || any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(W))) || any(any(isnan(options.inst)))
-        error('NaN values not allowed in input data');
+        error('NaN values not allowed in input data. Remove all rows with NaN''s before using this function.');
     end    
     
     % Check method

@@ -69,7 +69,7 @@ function [ est ] = ols( y, X, varargin )
             
     % Error if NaN's in input data
     if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(options.clusterid)))
-        error('NaN values not allowed in input data');
+        error('NaN values not allowed in input data. Remove all rows with NaN''s before using this function.');
     end
         
     % Check if constant

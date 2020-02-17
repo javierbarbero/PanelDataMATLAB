@@ -69,10 +69,11 @@ function [ est ] = s2sls( y, X, W, varargin )
     % Extract table names and convert data to array
     [y, ynames] = extracttable(y);
     [X, xnames] = extracttable(X);    
+    options.inst = extracttable(options.inst);
             
     % Error if NaN's in input data
     if any(isnan(y)) || any(any(isnan(X))) || any(any(isnan(W))) || any(any(isnan(options.inst)))
-        error('NaN values not allowed in input data');
+        error('NaN values not allowed in input data. Remove all rows with NaN''s before using this function.');
     end
         
     % Get endogenous and exogenous ariables 
