@@ -18,8 +18,8 @@ To use the Toolbox add the folder called "paneldata" (with Subfolders) to the MA
 
 The toolbox contains the following folders:
 - data: some datasets used in the examples.
-- examples: examples of all the functions included in the toolbox.
-- examplesjss: examples of the Working Paper.
+- examples: examples of all the functions included in the toolbox (Working Paper version=.
+- examplesjss: examples of all the functions included in the toolbox (JSS version).
 - numericalchecks: numericals checks against Stata and R (see details in the Working Paper).
 - paneldata: all the functions of the toolbox all here. This is the folder you must add to the MATLAB path.
 - unittests: unitests of the functions of the toolbox.
