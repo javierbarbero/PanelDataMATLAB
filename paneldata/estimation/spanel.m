@@ -458,7 +458,7 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
     est.yhat = yhat;
     %est.yhattr = yhattr;
     est.res = res;
-    %est.resvar = resvar;
+    est.resvar = estTemp.resvar;
     est.resdf = resdf;
     
     est.Tid = Tid;
