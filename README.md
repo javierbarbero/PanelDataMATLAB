@@ -1,6 +1,6 @@
 # Panel Data Toolbox for MATLAB
 
-Version 2.0
+Version 2.1
 
 http://www.paneldatatoolbox.com
 

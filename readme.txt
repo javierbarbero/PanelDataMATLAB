@@ -1,6 +1,6 @@
 # Panel Data Toolbox for MATLAB
 
-Version 2.0
+Version 2.1
 
 http://www.paneldatatoolbox.com
 
@@ -18,7 +18,7 @@ To use the Toolbox add the folder called "paneldata" (with Subfolders) to the MA
 
 The toolbox contains the following folders:
 - data: some datasets used in the examples.
-- examples: examples of all the functions included in the toolbox (Working Paper version=.
+- examples: examples of all the functions included in the toolbox (Working Paper version).
 - examplesjss: examples of all the functions included in the toolbox (JSS version).
 - numericalchecks: numericals checks against Stata and R (see details in the Working Paper).
 - paneldata: all the functions of the toolbox all here. This is the folder you must add to the MATLAB path.

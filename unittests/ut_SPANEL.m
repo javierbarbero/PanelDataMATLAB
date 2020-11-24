@@ -8,12 +8,12 @@ tolTest = 1e-2;
 
 
 % Read data
-load '..\data\MunnellData'
+load '../data/MunnellData'
 y = log(gsp);
 X = [log(pcap), log(pc), log(emp), unemp];
 Z = [log(hwy), log(water)];
 
-load '..\data\MunnellW'
+load '../data/MunnellW'
 Wbig = kron(W,eye(17));
 
 % POOL unit test of Pool SAR are with respect to Sata results (std errors differe
@@ -51,6 +51,11 @@ feSAR = spanel(id,year,y,X,W,'fe');
 
 assert(all(abs(feSAR.coef - [-0.04040614; 0.21904067; 0.66833361; -0.00472828; 0.19166263]) <= tolCoef),'Estimated coefficients')
 assert(all(abs(feSAR.stderr - [0.02666502; 0.02509769; 0.03077822; 0.00090997; 0.02617774]) <= tolCoef),'Standard errors')
+
+simpfeSAR = simpacts(feSAR);
+assert(all(abs(simpfeSAR.ADI - [-0.040778101; 0.221057046; 0.674485934; -0.004771802]) <= tolCoef),'ATI')
+assert(all(abs(simpfeSAR.AII - [-0.009208631; 0.049919753; 0.152314399; -0.001077582]) <= tolCoef),'AII')
+assert(all(abs(simpfeSAR.ATI - [-0.049986732; 0.270976799; 0.826800333; -0.005849384]) <= tolCoef),'ATI')
 
 % FE SAR Endog
 feSARen = spanel(id,year,y,X,W,'fe','endog',1,'inst',Z);
@@ -91,6 +96,11 @@ reSAR = spanel(id,year,y,X,W,'re');
 
 assert(all(abs(reSAR.coef - [0.02098103; 0.29001525; 0.71011141; -0.00641009; 0.03974083; 1.91197495]) <= tolCoef),'Estimated coefficients')
 assert(all(abs(reSAR.stderr - [0.02475292; 0.02117623; 0.02677249; 0.00090826; 0.01508851; 0.16545521]) <= tolCoef),'Standard errors')
+
+simpreSAR = simpacts(reSAR);
+assert(all(abs(simpreSAR.ADI - [0.020988834; 0.290123078; 0.710375425; -0.006412478]) <= tolCoef),'ATI')
+assert(all(abs(simpreSAR.AII - [0.0008605104; 0.0118946067; 0.0291243161; -0.0002629019]) <= tolCoef),'AII')
+assert(all(abs(simpreSAR.ATI - [0.021849344; 0.302017685; 0.739499741; -0.006675379]) <= tolCoef),'ATI')
 
 % RE SAR Endog
 reSARen = spanel(id,year,y,X,W,'re','endog',1,'inst',Z);

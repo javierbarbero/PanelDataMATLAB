@@ -2,10 +2,11 @@
 library(splm)
 library(sphet)
 library(spdep)
+library(spatialreg)
 
 # Load Data
-data = read.csv("..\\data\\MunnellData.csv")
-W = read.table("..\\data\\MunnellW.txt")
+data = read.csv("../data/MunnellData.csv")
+W = read.table("../data/MunnellW.txt")
 W = as.matrix(W)
 lw = mat2listw(W)
 
@@ -14,7 +15,7 @@ fme <- log(gsp) ~ log(pc) + log(emp) + unemp
 
 # Build big W por Pool
 bigWm <- kronecker(W,diag(17))
-bigW <- mat2listw(bigWm)
+bigW <- mat2listw(bigWm, style = "W")
 
 # Export to geoda .GWT file (to import later into Stata)
 write.sn2gwt(listw2sn(mat2listw(bigWm)), '..\\data\\bigW.GWT')
@@ -43,6 +44,9 @@ summary(poSEMen)
 feSAR <- spgm(fm, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="within", method="w2sls")
 summary(feSAR)
 
+impfeSAR <- impacts(feSAR, listw = bigW, zstats = TRUE, time = 17, R = 200)
+summary(impfeSAR, zstats = TRUE, short = TRUE)
+
 # FE SAR Endog
 feSARen <- spgm(fme, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="within", method="w2sls", endog= ~log(pcap), instruments= ~log(hwy) + log(water))
 summary(feSARen)
@@ -70,6 +74,9 @@ summary(feSARAR)
 # RE SAR
 reSAR <- spgm(fm, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="random", method="g2sls")
 summary(reSAR)
+
+impreSAR <- impacts(reSAR, listw = bigW, zstats = TRUE, time = 17)
+summary(impreSAR, zstats = TRUE)
 
 # RE SAR Endog
 reSARen <- spgm(fme, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="random", method="g2sls", endog= ~log(pcap), instruments= ~log(hwy) + log(water))

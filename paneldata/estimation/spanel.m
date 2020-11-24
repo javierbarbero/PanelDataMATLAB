@@ -27,16 +27,16 @@ function [ est ] = spanel( id, time, y, X, W, method, varargin )
 %
 %   Example
 %     
-%      est = s2sls(id, time, y, X, W, 'fe', 'slagy', 1);
-%      est = s2sls(id, time, y, X, W, 'be', 'slagy', 1, 'slagerror', 1);
+%      est = spanel(id, time, y, X, W, 'fe', 'slagy', 1);
+%      est = spanel(id, time, y, X, W, 'be', 'slagy', 1, 'slagerror', 1);
 %
 %   See also ESTOUT, S2SLS, PANEL, IVPANEL 
 %
-%   Copyright 2013-2015 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
+%   Copyright 2013-2020 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
 %   http://www.paneldatatoolbox.com
 %
 %   Version: 2.0
-%   LAST UPDATE: 16, June, 2016
+%   LAST UPDATE: 24, November, 2020
 %
 
     % Create output structure

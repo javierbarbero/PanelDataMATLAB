@@ -1,4 +1,16 @@
 ----------------------------------
+VERSION: 2.1 - November - 2020
+----------------------------------
+
+New functions to compute and display spatial impacts of spatial econometric models:
+direct, indirect and total.
+
+- '[ simps ] = simpacts( est )': compute spatial impacts of an spatial econometric model.
+- 'simpactsdisp( estsimpacts )': display computed spatial impacts of an spatial econometric model.
+
+Other minor improvements.
+
+----------------------------------
 VERSION: 2.0 - June - 2015
 ----------------------------------
 
