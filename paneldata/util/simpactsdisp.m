@@ -38,7 +38,7 @@ function simpactsdisp( estsimpacts )
     % Print table
     fprintf('\n');
     fprintf('-------------------------------------------\n');
-    fprintf('%12s%8s%10s%10s \n','Variable','ADI','AII','ATI');
+    fprintf('%12s%10s%10s%10s \n','Variable','Direct','Indirect','Total');
     fprintf('-------------------------------------------\n');
     for jj = 1:k
         fprintf('%12s%10.6f%10.6f%10.6f \n',string(xnames(jj)),ADI(jj),AII(jj),ATI(jj));

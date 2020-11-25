@@ -29,6 +29,11 @@ function [ simps ] = simpacts( est )
     if est.slagy ~= 1
         error("Model does not have spatial lag of dependent variable.")
     end
+    
+    % Error if additional spatial lags of X variables
+    if ~isempty(est.slagX)
+        error("Not yet implemented when additional spatial lags of X are included in the model.")
+    end
 
     % Get W matrix
     if est.isPanel
@@ -64,21 +69,21 @@ function [ simps ] = simpacts( est )
     hessi = est.varcoef;
     hessi = circshift(hessi,[1,1]); % Put spatial lag in first place
 
-    D_d = zeros(k,1);
-    D_i = zeros(k,1);
-    D_t = zeros(k,1);
+    seADI = zeros(k,1);
+    seAII = zeros(k,1);
+    seATI = zeros(k,1);
 
     ind = 1;
     for jj = 1:k
-        D_d(jj) = full(sqrt([SSSi*coefs_beta(jj)/N, SSi/N]*(N*hessi([1,jj+ind],[1,jj+ind]))*[SSSi*coefs_beta(jj)/N, SSi/N]'/N));
-        D_t(jj) = full(sqrt([KKi*coefs_beta(jj)/N, Ki/N]*(N*hessi([1,jj+ind],[1,jj+ind]))*[KKi*coefs_beta(jj)/N, Ki/N]'/N));
-        D_i(jj) = full(sqrt(([KKi*coefs_beta(jj)/N, Ki/N]-[SSSi*coefs_beta(jj)/N, SSi/N])*(N*hessi([1,jj+ind],[1,jj+ind]))*([KKi*coefs_beta(jj)/N, Ki/N]-[SSSi*coefs_beta(jj)/N, SSi/N])'/N));
+        seADI(jj) = full(sqrt([SSSi*coefs_beta(jj)/N, SSi/N]*(N*hessi([1,jj+ind],[1,jj+ind]))*[SSSi*coefs_beta(jj)/N, SSi/N]'/N));
+        seATI(jj) = full(sqrt([KKi*coefs_beta(jj)/N, Ki/N]*(N*hessi([1,jj+ind],[1,jj+ind]))*[KKi*coefs_beta(jj)/N, Ki/N]'/N));
+        seAII(jj) = full(sqrt(([KKi*coefs_beta(jj)/N, Ki/N]-[SSSi*coefs_beta(jj)/N, SSi/N])*(N*hessi([1,jj+ind],[1,jj+ind]))*([KKi*coefs_beta(jj)/N, Ki/N]-[SSSi*coefs_beta(jj)/N, SSi/N])'/N));
     end
     
     % p-value
-    pADI = (1 - normaldist(abs(ADI ./ D_d)))' * 2;
-    pAII = (1 - normaldist(abs(AII ./ D_i)))' * 2;
-    pATI = (1 - normaldist(abs(ATI ./ D_t)))' * 2;
+    pADI = (1 - normaldist(abs(ADI ./ seADI)))' * 2;
+    pAII = (1 - normaldist(abs(AII ./ seAII)))' * 2;
+    pATI = (1 - normaldist(abs(ATI ./ seATI)))' * 2;
     
     % Return structure with results
     simps.xnames = xnames;
@@ -88,9 +93,9 @@ function [ simps ] = simpacts( est )
     simps.AII = AII;
     simps.ATI = ATI;
     
-    simps.seADI = D_d;
-    simps.seAII = D_i;
-    simps.seATI = D_t;
+    simps.seADI = seADI;
+    simps.seAII = seAII;
+    simps.seATI = seATI;
     
     simps.pADI = pADI';
     simps.pAII = pAII';

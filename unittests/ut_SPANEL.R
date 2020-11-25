@@ -75,8 +75,8 @@ summary(feSARAR)
 reSAR <- spgm(fm, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="random", method="g2sls")
 summary(reSAR)
 
-impreSAR <- impacts(reSAR, listw = bigW, zstats = TRUE, time = 17)
-summary(impreSAR, zstats = TRUE)
+impreSAR <- impacts(reSAR, listw = bigW, zstats = TRUE, time = 17, R = 200)
+summary(impreSAR, zstats = TRUE, short = TRUE)
 
 # RE SAR Endog
 reSARen <- spgm(fme, data=data, listw=lw, lag=TRUE, spatial.error=FALSE, model="random", method="g2sls", endog= ~log(pcap), instruments= ~log(hwy) + log(water))

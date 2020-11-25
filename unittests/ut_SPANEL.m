@@ -53,9 +53,16 @@ assert(all(abs(feSAR.coef - [-0.04040614; 0.21904067; 0.66833361; -0.00472828; 0
 assert(all(abs(feSAR.stderr - [0.02666502; 0.02509769; 0.03077822; 0.00090997; 0.02617774]) <= tolCoef),'Standard errors')
 
 simpfeSAR = simpacts(feSAR);
-assert(all(abs(simpfeSAR.ADI - [-0.040778101; 0.221057046; 0.674485934; -0.004771802]) <= tolCoef),'ATI')
+assert(all(abs(simpfeSAR.ADI - [-0.040778101; 0.221057046; 0.674485934; -0.004771802]) <= tolCoef),'ADI')
 assert(all(abs(simpfeSAR.AII - [-0.009208631; 0.049919753; 0.152314399; -0.001077582]) <= tolCoef),'AII')
 assert(all(abs(simpfeSAR.ATI - [-0.049986732; 0.270976799; 0.826800333; -0.005849384]) <= tolCoef),'ATI')
+
+% standard errors different from R as R use simulation method. Tested
+% against MATLAB implementation
+assert(all(abs(simpfeSAR.seADI - [0.026918; 0.025105; 0.030323; 0.000917]) <= tolCoef),'seADI')
+assert(all(abs(simpfeSAR.seAII - [0.006369; 0.007918; 0.022793; 0.000261]) <= tolCoef),'seAII')
+assert(all(abs(simpfeSAR.seATI - [0.033145; 0.028716; 0.035545; 0.001125]) <= tolCoef),'seATI')
+
 
 % FE SAR Endog
 feSARen = spanel(id,year,y,X,W,'fe','endog',1,'inst',Z);
@@ -98,7 +105,7 @@ assert(all(abs(reSAR.coef - [0.02098103; 0.29001525; 0.71011141; -0.00641009; 0.
 assert(all(abs(reSAR.stderr - [0.02475292; 0.02117623; 0.02677249; 0.00090826; 0.01508851; 0.16545521]) <= tolCoef),'Standard errors')
 
 simpreSAR = simpacts(reSAR);
-assert(all(abs(simpreSAR.ADI - [0.020988834; 0.290123078; 0.710375425; -0.006412478]) <= tolCoef),'ATI')
+assert(all(abs(simpreSAR.ADI - [0.020988834; 0.290123078; 0.710375425; -0.006412478]) <= tolCoef),'ADI')
 assert(all(abs(simpreSAR.AII - [0.0008605104; 0.0118946067; 0.0291243161; -0.0002629019]) <= tolCoef),'AII')
 assert(all(abs(simpreSAR.ATI - [0.021849344; 0.302017685; 0.739499741; -0.006675379]) <= tolCoef),'ATI')
 
