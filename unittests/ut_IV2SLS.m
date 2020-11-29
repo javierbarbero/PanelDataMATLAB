@@ -8,7 +8,7 @@ tolTestLow = 1e-1;
 tolTest = 1e-4;
 
 % Read data
-load '..\data\MunnellData'
+load '../data/MunnellData'
 y = log(gsp);
 X = [log(pcap), log(pc), log(emp), unemp];
 endog = 1;
@@ -66,6 +66,7 @@ assert(all(abs(wu.df -  [1, 810]) <= tolTest),'WUENDOG df')
 % IV2SLS robust estimation
 iv1r = iv2sls(y,X,Z,'endog',endog,'vartype','robust');
 
+assert(all(abs(iv1r.coef - iv1.coef) <= tolCoef),'Estimated coefficients (Robust)');
 readstderr = [0.02141369;0.01293101;0.02084542;0.00134565;0.07360416];
 assert(all(abs(iv1r.stderr - readstderr) <= tolCoef),'Standard errors (Robust)')
 

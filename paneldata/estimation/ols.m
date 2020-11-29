@@ -97,7 +97,7 @@ function [ est ] = ols( y, X, varargin )
     
     % Number of variables
     k = size(X,2);
-    
+
     % Compute estimates
     coef = (X'*X)\X'*y;
     

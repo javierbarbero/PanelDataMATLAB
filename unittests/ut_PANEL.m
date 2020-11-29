@@ -8,7 +8,7 @@ tolTestLow = 1e-1;
 tolTest = 1e-4;
 
 % Read data
-load '..\data\MunnellData'
+load '../data/MunnellData'
 y = log(gsp);
 X = [log(pcap), log(pc), log(emp), unemp];
 

@@ -127,7 +127,6 @@ function [ est ] = iv2sls( y, X, Z, varargin )
         Z = [X(:,exog) Z];
     end
     
-    
     % Number of variables
     k = size(X,2);
     nendog = size(X(:,endog),2);
@@ -136,9 +135,10 @@ function [ est ] = iv2sls( y, X, Z, varargin )
     % Replace instruments if specified in the useinstruments option
     if ~isempty(options.useinstruments)
         Z = options.useinstruments;
-        lsef = NaN;
+        lself = NaN;
         lnew = size(Z,2);
         l = lnew;
+        znames = [];
     end
     
     % First Stage

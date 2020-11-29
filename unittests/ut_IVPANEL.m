@@ -8,7 +8,7 @@ tolTestLow = 1e-1;
 tolTest = 1e-4;
 
 % Load data
-load '..\data\CigarData'
+load '../data/CigarData'
 
 y = log(c);
 X = [log(price), log(ndi), log(pimin)];

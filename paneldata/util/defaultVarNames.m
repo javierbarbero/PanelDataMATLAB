@@ -78,7 +78,7 @@ function [ est ] = defaultVarNames( est )
         end
         
         % Fill missing varnames        
-        for i=begin+1:1:lneworig
+        for i=begin+1:1:max(lnew, lneworig)
             est.znames(i) = cellstr(sprintf('iv%d',i));
         end
     end

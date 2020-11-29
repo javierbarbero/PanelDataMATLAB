@@ -172,6 +172,7 @@ function [ est ] = ivpanel( id, time, y, X, Z, method, varargin )
                 lself = NaN;
                 lnew = size(Z,2);
                 l = lnew;
+                znames = [];
             end
             
             % No transformation por pool
