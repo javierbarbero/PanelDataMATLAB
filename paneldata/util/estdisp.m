@@ -150,7 +150,7 @@ function [  ] = estdisp( est )
                     fprintf('ESS = %f ',est.ESS);
                 end
                 if  ~isnan(est.TSS)
-                    fprintf('TSS = %f ',est.ESS);
+                    fprintf('TSS = %f ',est.TSS);
                 end
                 fprintf('\n');
                 %fprintf('RSS = %f ESS = %f TSS %f \n',est.RSS, est.ESS, est.TSS);
