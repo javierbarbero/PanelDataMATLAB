@@ -9,11 +9,11 @@ function [  ] = estdisp( est )
 %
 %   See also ESTOUT, TESTDISP
 %
-%   Copyright 2013-2015 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
+%   Copyright 2013-2021 Inmaculada C. Álvarez, Javier Barbero, José L. Zofío
 %   http://www.paneldatatoolbox.com
 %
-%   Version: 2.0
-%   LAST UPDATE: 26, May, 2016
+%   Version: 2.1.1
+%   LAST UPDATE: 15, March, 2021
 %
 
     % Fill missing variables names. In case the user has change some names
