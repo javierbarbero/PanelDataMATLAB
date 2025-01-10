@@ -4,7 +4,7 @@
 
 Version 2.1
 
-http://www.paneldatatoolbox.com
+https://ecorda.org/software/panel-data-matlab/
 
 ## Authors:
 
